@@ -40,8 +40,43 @@ class Airplane {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-class Person {
+// function Person(name, age) {
+//   this.name = name;
+//   this.age = age;
+//   this.stomach = [];
+// }
 
+// Person.prototype.eat = function(food) {
+//   if (this.stomach.length < 10) {
+//     return this.stomach.push(food);
+//   }
+// };
+// Person.prototype.poop = function() {
+//   return (this.stomach = []);
+// };
+// Person.prototype.toString = function() {
+//   return `${this.name}, ${this.age}`;
+// };
+
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+  eat(food) {
+    if (this.stomach.length < 10) {
+      return this.stomach.push(food);
+    }
+  }
+
+  poop() {
+    return (this.stomach = []);
+  }
+
+  toString() {
+    return `${this.name} ${this.age}`;
+  }
 }
 
 /*
@@ -59,7 +94,28 @@ class Person {
 */
 
 class Car {
+  constructor(model, milesPerGallon) {
+    this.tank = 0;
+    this.odometer = 0;
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
+  }
+  fill(gallon) {
+    return (this.tank += gallon);
+  }
 
+  drive(distance) {
+    let fuelUsed = distance / this.milesPerGallon;
+    let milesAvailable = this.tank * this.milesPerGallon;
+    if (this.tank >= fuelUsed) {
+      this.odometer += distance;
+      this.tank -= fuelUsed;
+    } else {
+      this.odometer += milesAvailable;
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles!`;
+    }
+  }
 }
 
 /*
@@ -75,9 +131,18 @@ class Car {
         + {name} and {location} of course come from the instance's own properties.
 */
 class Lambdasian {
-
+  constructor(lamb) {
+    this.name = lamb.name;
+    this.age = lamb.age;
+    this.location = lamb.location;
+  }
+  speak() {
+    return `Hello my name is ${this.name}, I am from ${this.location}`;
+  }
 }
+////constructor{
 
+// }
 /*
   TASK 4
     - Write an Instructor class extending Lambdasian.
@@ -92,7 +157,7 @@ class Lambdasian {
         + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
         + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
 */
-class Instructor {
+class Instructor extends Lambdasian {
 
 }
 
@@ -111,9 +176,7 @@ class Instructor {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {
-
-}
+class Student {}
 
 /*
   TASK 6
@@ -128,9 +191,7 @@ class Student {
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {
-
-}
+class ProjectManager {}
 
 /*
   STRETCH PROBLEM (no tests!)
@@ -145,12 +206,26 @@ class ProjectManager {
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
 if (typeof exports !== 'undefined') {
-  module.exports = module.exports || {}
-  if (Airplane) { module.exports.Airplane = Airplane }
-  if (Person) { module.exports.Person = Person }
-  if (Car) { module.exports.Car = Car }
-  if (Lambdasian) { module.exports.Lambdasian = Lambdasian }
-  if (Instructor) { module.exports.Instructor = Instructor }
-  if (Student) { module.exports.Student = Student }
-  if (ProjectManager) { module.exports.ProjectManager = ProjectManager }
+  module.exports = module.exports || {};
+  if (Airplane) {
+    module.exports.Airplane = Airplane;
+  }
+  if (Person) {
+    module.exports.Person = Person;
+  }
+  if (Car) {
+    module.exports.Car = Car;
+  }
+  if (Lambdasian) {
+    module.exports.Lambdasian = Lambdasian;
+  }
+  if (Instructor) {
+    module.exports.Instructor = Instructor;
+  }
+  if (Student) {
+    module.exports.Student = Student;
+  }
+  if (ProjectManager) {
+    module.exports.ProjectManager = ProjectManager;
+  }
 }
