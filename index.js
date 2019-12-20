@@ -40,24 +40,6 @@ class Airplane {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-// function Person(name, age) {
-//   this.name = name;
-//   this.age = age;
-//   this.stomach = [];
-// }
-
-// Person.prototype.eat = function(food) {
-//   if (this.stomach.length < 10) {
-//     return this.stomach.push(food);
-//   }
-// };
-// Person.prototype.poop = function() {
-//   return (this.stomach = []);
-// };
-// Person.prototype.toString = function() {
-//   return `${this.name}, ${this.age}`;
-// };
-
 class Person {
   constructor(name, age) {
     this.name = name;
@@ -186,7 +168,26 @@ class Instructor extends Lambdasian {
         + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
         + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
 */
-class Student {}
+class Student extends Lambdasian {
+  constructor(largs) {
+    super(largs);
+    this.previousBackground = largs.previousBackground;
+    this.className = largs.className;
+    this.favSubjects = largs.favSubjects;
+  }
+
+  listSubjects() {
+    return `Loving ${this.favSubjects}!`;
+  }
+
+  PRAssignment(subject) {
+    return `${this.name} has submitted a PR for ${subject}`;
+  }
+
+  sprintChallenge(subject) {
+    return `${this.name} has begun sprint challenge on ${subject}`;
+  }
+}
 
 /*
   TASK 6
@@ -201,7 +202,23 @@ class Student {}
         + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
         + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
 */
-class ProjectManager {}
+class ProjectManager extends Instructor {
+
+constructor(obj){
+  super(obj);
+  this.gradClassName = obj.gradClassName;
+  this.favInstructor = obj.favInstructor;
+}
+
+standUp(channel){
+return `${this.name} announces to ${channel}, @channel standy times!`
+}
+
+debugsCode(student, subject){
+return `${this.name} debugs ${student.name}'s code on ${subject}`
+}
+
+}
 
 /*
   STRETCH PROBLEM (no tests!)
